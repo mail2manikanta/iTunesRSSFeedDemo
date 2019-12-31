@@ -78,7 +78,7 @@ extension UIView {
         container.tag = UIView.activityIndicatorTag
         container.frame = self.frame
         container.center = self.center
-        container.backgroundColor = UIColor.black
+        container.backgroundColor = UIColor.white
 
         let loadingView: UIView = UIView()
         loadingView.frame = CGRect(origin: .zero, size: CGSize(width: 80, height: 80))
