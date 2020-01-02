@@ -68,7 +68,7 @@ struct Results<T:Decodable> {
     let results: [T]
 }
 
-extension Results: Decodable where T == Album {
+extension Results: Decodable {
     private enum CodingKeys: String, CodingKey {
         case feed
         case results
@@ -78,6 +78,6 @@ extension Results: Decodable where T == Album {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         let feedContainer = try container.nestedContainer(keyedBy:CodingKeys.self, forKey: .feed)
-        results = try feedContainer.decode([Album].self, forKey: .results)
+        results = try feedContainer.decode([T].self, forKey: .results)
     }
 }

@@ -104,9 +104,9 @@ class APIRequest<Resource: APIResource> {
 }
 
 extension APIRequest: NetworkRequest {
-    func decode(_ data: Data) -> [Album]? {
+    func decode(_ data: Data) -> [Resource.ModelType]? {
         do {
-            let wrapper = try JSONDecoder().decode(Results.self, from: data)
+            let wrapper = try JSONDecoder().decode(Results<Resource.ModelType>.self, from: data)
             return wrapper.results
         } catch {
             print(error)
@@ -115,7 +115,7 @@ extension APIRequest: NetworkRequest {
         return nil
     }
     
-    func load(withCompletion completion: @escaping (Result<[Album], DataError>) -> Void) {
+    func load(withCompletion completion: @escaping (Result<[Resource.ModelType], DataError>) -> Void) {
         load(resource.url, withCompletion: completion)
     }
 }
